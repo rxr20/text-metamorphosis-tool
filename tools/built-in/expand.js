@@ -1,0 +1,15 @@
+TMT.registerTool({
+  id: "expand",
+  hash: "expand",
+  name: "Expand",
+  category: "improve",
+  icon: "expand",
+  author: { name: "rxr20", github: "https://github.com/rxr20" },
+  description: "Add a little detail and context to each sentence without changing what it says.",
+  tags: ["expand", "elaborate", "detail", "longer"],
+  prompt: "Expand it with a little more detail and context, without changing the meaning or adding new facts.",
+  fields: [],
+  example: { before: "The launch went well.", after: "The launch went well, and the team was pleased with how smoothly everything ran." },
+  version: 1,
+  license: "MIT",
+});

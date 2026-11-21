@@ -1,0 +1,15 @@
+TMT.registerTool({
+  id: "professional",
+  hash: "professional",
+  name: "Professional Tone",
+  category: "transform",
+  icon: "briefcase",
+  author: { name: "rxr20", github: "https://github.com/rxr20" },
+  description: "Make the text sound confident, courteous and workplace-ready.",
+  tags: ["professional", "business", "work", "email", "tone"],
+  prompt: "Rewrite it in a professional, courteous and confident tone suitable for the workplace. Keep the meaning.",
+  fields: [],
+  example: { before: "I messed up the numbers, my bad.", after: "I made an error in the figures and will correct them." },
+  version: 1,
+  license: "MIT",
+});

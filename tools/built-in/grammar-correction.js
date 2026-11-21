@@ -1,0 +1,15 @@
+TMT.registerTool({
+  id: "grammar-correction",
+  hash: "grammar",
+  name: "Correct Grammar",
+  category: "improve",
+  icon: "spell-check",
+  author: { name: "rxr20", github: "https://github.com/rxr20" },
+  description: "Fix spelling, typos, grammar and punctuation while keeping the meaning, tone and wording.",
+  tags: ["grammar", "spelling", "proofreading", "typos"],
+  prompt: "Fix spelling, typos, grammar and punctuation. Keep the meaning, tone and wording otherwise.",
+  fields: [],
+  example: { before: "Thiss sentense has a gramatical eror.", after: "This sentence has a grammatical error." },
+  version: 1,
+  license: "MIT",
+});

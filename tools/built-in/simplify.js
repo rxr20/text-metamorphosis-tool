@@ -1,0 +1,15 @@
+TMT.registerTool({
+  id: "simplify",
+  hash: "simplify",
+  name: "Simplify",
+  category: "improve",
+  icon: "simplify",
+  author: { name: "rxr20", github: "https://github.com/rxr20" },
+  description: "Rewrite in plain, easy-to-read language with simpler words and structure.",
+  tags: ["simple", "plain language", "readability", "easy"],
+  prompt: "Rewrite it in plain, simple language that is easy to read. Keep the meaning.",
+  fields: [],
+  example: { before: "We need to ascertain the requisite documentation prior to commencement.", after: "We need to find the right documents before we start." },
+  version: 1,
+  license: "MIT",
+});

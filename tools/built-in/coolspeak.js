@@ -1,0 +1,15 @@
+TMT.registerTool({
+  id: "coolspeak",
+  hash: "coolspeak",
+  name: "Coolspeak",
+  category: "transform",
+  icon: "bolt",
+  author: { name: "rxr20", github: "https://github.com/rxr20" },
+  description: "Rewrite in casual broski internet slang with the occasional emoji.",
+  tags: ["slang", "cool", "internet", "fun", "emoji"],
+  prompt: "Rewrite it in casual broski internet slang, like \"lol wat bro\", with the occasional emoji such as 😳. Keep the meaning.",
+  fields: [],
+  example: { before: "I did not expect that result.", after: "lol wat bro, did not see that coming 😳" },
+  version: 1,
+  license: "MIT",
+});

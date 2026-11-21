@@ -1,0 +1,15 @@
+TMT.registerTool({
+  id: "shorten",
+  hash: "shorten",
+  name: "Shorten",
+  category: "improve",
+  icon: "scissors",
+  author: { name: "rxr20", github: "https://github.com/rxr20" },
+  description: "Make each sentence shorter and more concise while keeping the key meaning.",
+  tags: ["shorten", "concise", "summarize", "trim"],
+  prompt: "Make it shorter and more concise while keeping the key meaning.",
+  fields: [],
+  example: { before: "In the event that it rains tomorrow, we will have to move the event indoors.", after: "If it rains tomorrow, we'll move the event indoors." },
+  version: 1,
+  license: "MIT",
+});

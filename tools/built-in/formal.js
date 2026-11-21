@@ -1,0 +1,15 @@
+TMT.registerTool({
+  id: "formal",
+  hash: "formal",
+  name: "Formal Tone",
+  category: "transform",
+  icon: "pen",
+  author: { name: "rxr20", github: "https://github.com/rxr20" },
+  description: "Rewrite in a formal, polite register suitable for official correspondence.",
+  tags: ["formal", "tone", "polite", "letter"],
+  prompt: "Rewrite it in a formal, polite tone suitable for official correspondence. Keep the meaning.",
+  fields: [],
+  example: { before: "Hey, can you send me that file asap?", after: "Could you please send me the file at your earliest convenience?" },
+  version: 1,
+  license: "MIT",
+});

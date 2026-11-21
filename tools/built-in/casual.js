@@ -1,0 +1,15 @@
+TMT.registerTool({
+  id: "casual",
+  hash: "casual",
+  name: "Casual Tone",
+  category: "transform",
+  icon: "chat",
+  author: { name: "rxr20", github: "https://github.com/rxr20" },
+  description: "Relax the wording into a friendly, conversational tone.",
+  tags: ["casual", "friendly", "conversational", "tone"],
+  prompt: "Rewrite it in a relaxed, friendly, conversational tone. Keep the meaning.",
+  fields: [],
+  example: { before: "I would appreciate your assistance with this matter.", after: "Could you give me a hand with this?" },
+  version: 1,
+  license: "MIT",
+});

@@ -1,0 +1,15 @@
+TMT.registerTool({
+  id: "clarity",
+  hash: "clarity",
+  name: "Improve Clarity",
+  category: "improve",
+  icon: "sparkle",
+  author: { name: "rxr20", github: "https://github.com/rxr20" },
+  description: "Make each sentence clearer and more direct, removing ambiguity and awkward phrasing.",
+  tags: ["clarity", "clear", "direct", "readability"],
+  prompt: "Make it clearer and more direct. Remove ambiguity and awkward phrasing. Keep the meaning.",
+  fields: [],
+  example: { before: "It is the case that the report was by us not finished on time.", after: "We did not finish the report on time." },
+  version: 1,
+  license: "MIT",
+});

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Text Metamorphosis Tool · TMT</title>
+<meta name="description" content="TMT: private, on-device text transformation in your browser. Your words stay on your PC.">
+<link href="resources/bootstrap.min.css" rel="stylesheet">
+<link href="resources/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="ambient" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i><div class="gridfx"></div><div id="particles"></div></div>
+<div id="fxlayer" aria-hidden="true"></div>
+
+<header class="top">
+  <button id="toolsToggle" class="ibtn" type="button" aria-label="Show tools" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+  </button>
+  <div class="brand">
+    <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
+      <defs><linearGradient id="mg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b57cff"/><stop offset="1" stop-color="#ff3df2"/></linearGradient></defs>
+      <path d="M4 6h24v5H18v15h-4V11H4z" fill="url(#mg)"/>
+      <path d="M20 14h8v3h-8zM20 20h8v3h-8z" fill="#22d3ee" opacity=".85"/>
+    </svg>
+    <span class="wm">TMT</span>
+    <span class="full">Text Metamorphosis Tool<em>Privacy-first AI text processor</em></span>
+  </div>
+  <div class="ctx"><span class="k">TOOL</span><span id="ctxTool" class="v">…</span></div>
+  <div class="spacer"></div>
+  <div class="privacy" title="Text is processed by a model running on your device. It is not sent to a cloud AI service. The WebLLM runtime and model files are downloaded when you load a model.">
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.500-3.400 8-8 9-4.600-1-8-4.500-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+    <span>ON-DEVICE PROCESSING</span>
+  </div>
+  <div class="modelbox">
+    <select id="model" class="sel" aria-label="Model"></select>
+    <button id="load" class="btn-acc" type="button">Load model</button>
+  </div>
+  <div id="statuschip" class="statuschip" data-state="idle" role="status" aria-live="polite"><i class="dot"></i><span id="status">Model not loaded</span></div>
+</header>
+<div class="loadbar"><div id="bar"></div></div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar" aria-label="Tools">
+    <div class="search">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+      <input id="toolSearch" type="search" placeholder="Search tools..." aria-label="Search tools" autocomplete="off" spellcheck="false">
+    </div>
+    <nav id="toolList" class="toollist" aria-label="Tool list"></nav>
+    <div id="noTools" class="notools" hidden>
+      <b>No tools match.</b>
+      <span>Try another word, or <a href="CONTRIBUTING.md" target="_blank" rel="noopener">contribute the tool you're missing</a>.</span>
+    </div>
+    <div id="rejected" class="rejected" hidden></div>
+    <div class="sidefoot">
+      <a class="contrib" href="CONTRIBUTING.md" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        <span><b>Contribute a tool</b><small>Add a definition, open a pull request</small></span>
+      </a>
+    </div>
+  </aside>
+
+  <main class="canvas">
+    <section class="metrics" aria-label="Text metrics">
+      <div class="m"><span class="mk-l">Characters</span><b id="mChars">0</b></div>
+      <div class="m"><span class="mk-l">Words</span><b id="mWords">0</b></div>
+      <div class="m"><span class="mk-l">Sentences</span><b id="mSent">0</b></div>
+      <div class="m"><span class="mk-l" title="Rough estimate: about 4 characters per token">Tokens (est.)</span><b id="mTok">~0</b></div>
+      <div class="m hot"><span class="mk-l">Pending</span><b id="mPend">0</b></div>
+    </section>
+
+    <section class="toolbar">
+      <div class="instr-row">
+        <label for="instr" class="lbl">Instruction</label>
+        <div class="instr-in">
+          <input id="instr" class="inp" placeholder="Instructions for the AI…" autocomplete="off">
+          <button id="instrLoad" class="btn-gh sm" type="button" title="Load an instruction from a .tmtprompt (plain text) file">Load</button>
+          <button id="instrSave" class="btn-gh sm" type="button" title="Save this instruction as a .tmtprompt (plain text) file">Save</button>
+          <input id="instrFile" type="file" accept=".tmtprompt,.txt,text/plain" hidden>
+        </div>
+      </div>
+      <div id="fields" class="fields"></div>
+      <div id="quick" class="quick" hidden></div>
+    </section>
+
+    <div class="stack">
+      <section class="pane" id="srcPane">
+        <div class="pane-head">
+          <span class="ph-t"><i class="tag">SOURCE</i>Your text</span>
+          <button id="copy" class="btn-gh" type="button">Copy</button>
+        </div>
+        <div class="pane-body">
+          <div id="backdrop" aria-hidden="true"></div>
+          <textarea id="input" placeholder="Type or paste text here…" spellcheck="false" aria-label="Your text"></textarea>
+        </div>
+      </section>
+      <section class="pane res" id="resPane">
+        <div class="pane-head">
+          <span class="ph-t"><i class="tag">SUGGESTIONS</i><span id="summary">Suggestions</span></span>
+          <span class="actions">
+            <button id="copyRes" class="btn-gh" type="button" title="Copy the text with every suggestion applied. Nothing is changed in your source.">Copy result</button>
+            <button id="approve" class="btn-acc" type="button" disabled>Approve all</button>
+          </span>
+        </div>
+        <div class="procbar" aria-hidden="true"><i id="procfill"></i></div>
+        <div class="pane-body"><div id="output" aria-live="polite"></div></div>
+        <div class="pane-foot">Suggestions only. Nothing changes in your text until you click a highlight or approve all.</div>
+      </section>
+    </div>
+  </main>
+
+  <aside class="rail" aria-label="Assistant and insights">
+    <section class="cd helper" id="helper" data-state="idle">
+      <div class="face" id="helperFace" aria-hidden="true">✨</div>
+      <div class="htxt"><span class="k">TMT ASSISTANT</span><p id="helperMsg">Load a model to begin.</p></div>
+    </section>
+
+    <details class="cd" open>
+      <summary>What this tool does<svg class="chev" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+      <div class="tname"><span id="tIcon" class="ticon"></span><b id="tName"></b><span id="tBadge" class="bdg"></span></div>
+      <p id="tDesc" class="desc"></p>
+      <div class="ex">
+        <div><span class="k">BEFORE</span><p id="exBefore"></p></div>
+        <div><span class="k">AFTER</span><p id="exAfter"></p></div>
+      </div>
+      <p class="byline" id="tBy"></p>
+    </details>
+
+    <details class="cd" open>
+      <summary>Text insight<svg class="chev" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+      <dl class="insight">
+        <dt>Avg. sentence</dt><dd id="iAvg">-</dd>
+        <dt>Longest sentence</dt><dd id="iLong">-</dd>
+        <dt>Reading time</dt><dd id="iRead">-</dd>
+      </dl>
+    </details>
+
+    <details class="cd priv">
+      <summary><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.500h.01"/></svg>Your words stay on your PC<svg class="chev" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+      <p>Text is processed on your device by a model running in your browser. No cloud AI text upload. Loading a model downloads the WebLLM runtime and model files first, so an internet connection is needed once.</p>
+    </details>
+
+    <details class="cd cta">
+      <summary><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-3.5 10.900c.6.5 1 1.200 1 2.100h5c0-.9.4-1.600 1-2.100A6 6 0 0012 3z"/></svg>Have a text transformation idea?<svg class="chev" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+      <p>Add a small definition, include an example, and open a pull request. If it helps people transform text, it belongs in TMT.</p>
+      <a href="CONTRIBUTING.md" target="_blank" rel="noopener">How to contribute →</a>
+      <p class="star">Find TMT useful? A star on GitHub helps others discover it.</p>
+    </details>
+  </aside>
+</div>
+
+<script src="resources/jquery.min.js"></script>
+<script src="resources/registry.js"></script>
+<script src="tools/languages.js"></script>
+<script src="tools/manifest.js"></script>
+<script src="resources/script.js"></script>
+</body>
+</html>

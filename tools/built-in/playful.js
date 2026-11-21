@@ -1,0 +1,15 @@
+TMT.registerTool({
+  id: "playful",
+  hash: "playful",
+  name: "Playful Tone",
+  category: "transform",
+  icon: "smile",
+  author: { name: "rxr20", github: "https://github.com/rxr20" },
+  description: "Add a light, witty and upbeat feel without changing the meaning.",
+  tags: ["playful", "fun", "witty", "upbeat", "tone"],
+  prompt: "Rewrite it in a playful, witty and upbeat tone. Keep the meaning.",
+  fields: [],
+  example: { before: "The update is available now.", after: "Fresh update, hot off the press, and it's yours to grab!" },
+  version: 1,
+  license: "MIT",
+});

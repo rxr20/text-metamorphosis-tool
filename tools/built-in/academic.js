@@ -1,0 +1,15 @@
+TMT.registerTool({
+  id: "academic",
+  hash: "academic",
+  name: "Academic Style",
+  category: "transform",
+  icon: "graduation",
+  author: { name: "rxr20", github: "https://github.com/rxr20" },
+  description: "Rewrite in a precise, objective academic register.",
+  tags: ["academic", "scholarly", "essay", "paper", "style"],
+  prompt: "Rewrite it in a precise, objective academic style. Keep the meaning and do not add new facts.",
+  fields: [],
+  example: { before: "Lots of people think this idea is good.", after: "Many individuals regard this idea favourably." },
+  version: 1,
+  license: "MIT",
+});
