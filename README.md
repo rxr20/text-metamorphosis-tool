@@ -40,7 +40,14 @@ A browser-based text workstation. Pick a tool, review sentence-level suggestions
 3. **Review suggestions.** Each sentence is processed separately. Hover a changed sentence to highlight its match in the other panel.
 4. **Accept** a suggestion by clicking it, or use **Approve all**. Copy the source, or copy the result with everything applied.
 
-<img src="images/screenshot-tools.jpg" alt="TMT tools sidebar and suggestions" width="100%">
+
+<div align="center">
+<img src="images/screenshot-uishowcase.jpg" alt="TMT UI showcase" width="100%">
+
+<a href="https://rxr20.github.io/text-metamorphosis-tool/">
+<img src="images/button.png" alt="Test it online" width="50%">
+</a>
+</div>
 
 ---
 
@@ -56,7 +63,7 @@ A browser-based text workstation. Pick a tool, review sentence-level suggestions
 | 🎞️ **Metamorphosis reveal** | Animated reveal on each suggestion, respecting `prefers-reduced-motion`. |
 | 📱 **Responsive** | Desktop, tablet and mobile layouts. |
 
-<img src="images/screenshot-uishowcase.jpg" alt="TMT UI showcase" width="100%">
+<img src="images/screenshot-tools.jpg" alt="TMT tools sidebar and suggestions" width="100%">
 
 ---
 
