@@ -62,15 +62,33 @@ A browser-based text workstation. Pick a tool, review sentence-level suggestions
 
 ## 📋 Requirements
 
-- **Chrome or Edge** with WebGPU enabled.
+- **A modern browser** with WebGPU enabled.
+- **Modern NVIDIA graphics card**, **8 GB VRAM recommended**. Smaller models run on less memory, with lower quality.
 - An internet connection the first time, to download the runtime and the model you pick.
-- Enough GPU memory for the chosen model. Smaller models are faster and lower quality.
 
 ---
 
 ## 🚀 Run it
 
-No build step. Open `index.html` in Chrome or Edge.
+Pick one of the three options below.
+
+### A. Download the latest release (recommended)
+
+1. Go to the [latest release](https://github.com/rxr20/text-metamorphosis-tool/releases/latest).
+2. Download the ZIP file and extract it.
+3. Open the extracted folder and double-click `index.html`.
+
+### B. Download the main branch
+
+1. Go to the [main branch](https://github.com/rxr20/text-metamorphosis-tool/tree/main).
+2. Click **Code → Download ZIP** and extract it.
+3. Open the extracted folder and double-click `index.html`.
+
+### C. Try it online
+
+Open **[rxr20.github.io/text-metamorphosis-tool](https://rxr20.github.io/text-metamorphosis-tool/)** in your browser. Nothing to install.
+
+> The model is still downloaded to your device, and your data is not processed online. Your text stays on your computer.
 
 ---
 
