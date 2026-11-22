@@ -1,85 +1,134 @@
-# TMT | Text Metamorphosis Tool
+<div align="center">
+
+<img src="images/screenshot-hero.jpg" alt="TMT · Text Metamorphosis Tool" width="100%">
+
+# ✨ TMT · Text Metamorphosis Tool
 
 **Your words. Your device. Your rules.**
 
-TMT is a browser-based text transformation workstation. Pick a tool, enter text, review sentence-level suggestions, and accept changes one by one or all at once. The model runs on your device through [WebLLM](https://github.com/mlc-ai/web-llm) and WebGPU, so **your words stay on your PC**.
+A browser-based text workstation. Pick a tool, review sentence-level suggestions, and accept changes one by one or all at once.
 
-<!-- TBD docs/screenshot-hero.png -->
-## Private by design
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
+![WebLLM](https://img.shields.io/badge/WebLLM-on--device-8A2BE2)
+![WebGPU](https://img.shields.io/badge/WebGPU-required-2ea44f)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?logo=bootstrap&logoColor=white)
+![jQuery](https://img.shields.io/badge/jQuery-0769AD?logo=jquery&logoColor=white)
+![Tools](https://img.shields.io/badge/built--in_tools-12-5ce9ff)
+![License](https://img.shields.io/badge/license-MIT-blue)
 
-- Text is processed by a model running in your browser, on your GPU.
-- Your text, the prompts built from it, and the generated suggestions are not sent to a cloud AI service.
-- There is no backend, account, analytics or telemetry.
-- Being precise about the network: the **WebLLM runtime** is fetched from a CDN (`esm.run`) and **model files** are downloaded when you click *Load model*. TMT is not an offline app and does not claim to be.
-- If WebGPU or model loading is unavailable, TMT says so. It never falls back to remote inference.
+</div>
 
-## How it works
+---
 
-1. **Choose a tool** in the left sidebar (search by name, description, tag, category or author).
+## 🔒 Private by design
+
+| | |
+|---|---|
+| 🧠 **On-device model** | Runs in your browser on your GPU through [WebLLM](https://github.com/mlc-ai/web-llm) and WebGPU. |
+| 🚫 **No cloud AI** | Your text, prompts and suggestions are never sent to a cloud AI service. |
+| 👤 **No accounts** | No backend, no analytics, no telemetry. |
+| ⚠️ **Honest about the network** | The WebLLM runtime loads from a CDN, and model files download when you click *Load model*. TMT never falls back to remote inference. |
+
+---
+
+## ⚙️ How it works
+
+1. **Choose a tool** in the sidebar. Search by name, description, tag, category or author.
 2. **Load a model** from the header, then type or paste text.
-3. **Review suggestions.** Each sentence is processed separately. Changed sentences are highlighted in both panels, and hovering one highlights its match in the other.
+3. **Review suggestions.** Each sentence is processed separately. Hover a changed sentence to highlight its match in the other panel.
 4. **Accept** a suggestion by clicking it, or use **Approve all**. Copy the source, or copy the result with everything applied.
 
-<!-- TBD docs/workflow.gif -->
+<img src="images/screenshot-tools.jpg" alt="TMT tools sidebar and suggestions" width="100%">
 
-### Key capabilities
+---
 
-- Sentence-by-sentence processing with caching (by model, instruction and sentence), cancellation and debounce.
-- Tools for improving, translating and transforming text, plus a **Custom** instruction.
-- A **Translate** tool with a searchable, extensible target-language list.
-- A text-metamorphosis reveal when a suggestion arrives (respects `prefers-reduced-motion`).
-- Live metrics computed from your real text. Token count is an estimate (about 4 characters per token).
-- Responsive layout for desktop, tablet and mobile.
+## 🧩 Features
 
-## Requirements
+| Feature | Details |
+|---|---|
+| 🔁 **Sentence-by-sentence** | Cached by model, instruction and sentence, with cancellation and debounce. |
+| 🛠️ **12 built-in tools** | Grammar, clarity, shorten, expand, simplify, formal, professional, casual, coolspeak, playful, academic, translate. |
+| ✏️ **Custom instruction** | Write your own transformation in plain language. |
+| 🌍 **Translate** | Searchable, extensible target-language list. |
+| 📊 **Live metrics** | Computed from your real text. Token count is an estimate (about 4 characters per token). |
+| 🎞️ **Metamorphosis reveal** | Animated reveal on each suggestion, respecting `prefers-reduced-motion`. |
+| 📱 **Responsive** | Desktop, tablet and mobile layouts. |
 
-- A recent **Chrome or Edge** with WebGPU enabled.
-- An internet connection the first time, to download the WebLLM runtime and the model you pick.
+<img src="images/screenshot-uishowcase.jpg" alt="TMT UI showcase" width="100%">
+
+---
+
+## 📋 Requirements
+
+- **Chrome or Edge** with WebGPU enabled.
+- An internet connection the first time, to download the runtime and the model you pick.
 - Enough GPU memory for the chosen model. Smaller models are faster and lower quality.
 
-## Run it
+---
 
-TBD
+## 🚀 Run it
 
-## Contribute a tool
+No build step. Open `index.html` in Chrome or Edge.
 
-> **Have a text transformation idea? Contribute a tool.**
-> Add a small definition, include an example, and open a pull request. If it helps people transform text, it belongs in TMT.
+---
 
-A tool is one small data file. Copy `tools/community/example-tool.js`, edit it, add its path to `tools/manifest.js`, and it appears in the sidebar automatically. Read [CONTRIBUTING.md](CONTRIBUTING.md) and the [tool schema](docs/TOOL_SCHEMA.md). Contributions are reviewed before merging.
+## 🤝 Contribute a tool
 
-If you find TMT useful, a star on GitHub helps other people discover it.
+> **Have a text transformation idea?** Add a small definition, include an example, and open a pull request.
 
-## Architecture
+1. Copy `tools/community/example-tool.js` to `tools/community/your-tool-id.js`.
+2. Edit the definition. See the [tool schema](docs/TOOL_SCHEMA.md).
+3. Add the path to `tools/manifest.js`. The tool appears in the sidebar automatically.
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md) for the full process. Contributions are reviewed before merging.
+
+⭐ If you find TMT useful, a star on GitHub helps others discover it.
+
+---
+
+## 🏗️ Architecture
 
 ```text
-index.html              entry point (no build, classic scripts)
+index.html            entry point (no build, classic scripts)
 resources/
-  registry.js           tool validation + loader (data only, never runs contributor code)
-  script.js             UI, sentence engine, WebLLM flow, metamorphosis effect
-  style.css             TMT visual system
+  registry.js         tool validation and loader (data only)
+  script.js           UI, sentence engine, WebLLM flow, metamorphosis effect
+  style.css           visual system
 tools/
-  manifest.js           list of tool files
-  languages.js          target languages for Translate
-  built-in/*.js         core tools
-  community/*.js        contributed tools
-docs/TOOL_SCHEMA.md     exact tool format
+  manifest.js         list of tool files
+  languages.js        target languages for Translate
+  built-in/*.js       core tools
+  community/*.js      contributed tools
+docs/TOOL_SCHEMA.md   tool format
 ```
 
-- Tool files call `TMT.registerTool({...})`. They are loaded as classic `<script>` elements, so everything works from `file://` (no `fetch()` of local JSON, no ES modules for local files).
-- The registry validates each definition, skips bad ones with a console warning, and never lets them break the app.
-- The sidebar, search, parameter fields and the instruction are generated from the registry.
-- WebLLM is loaded with a dynamic `import()` from a CDN. It is not bundled, and no model weights are hosted here.
-- Bootstrap's reset and jQuery are bundled in `resources/`. The visual identity is custom.
+- Tool files call `TMT.registerTool({...})` and load as classic scripts, so everything works from `file://`.
+- The registry validates each tool, skips bad ones with a console warning, and never runs contributor code.
+- WebLLM is loaded from a CDN with `import()`. No model weights are hosted here.
 
-## Known limitations
+---
 
-- Quality depends on the model. Tiny models make mistakes, especially in less common languages.
-- Sentences are processed independently, so context across sentences is not used.
-- WebGPU is required. Other browsers are not supported.
-- The first model load can be large and slow.
+## ⚠️ Known limitations
 
-## Credits
+| Limitation | Why |
+|---|---|
+| Quality depends on the model | Tiny models make mistakes, especially in less common languages. |
+| No cross-sentence context | Sentences are processed independently. |
+| WebGPU only | Other browsers are not supported. |
+| Large first load | The first model download can be big and slow. |
 
+---
 
-Flag emoji are rendered with the bundled `resources/TwemojiCountryFlags.woff2` (Twemoji flag graphics, CC-BY 4.0, via the MIT-licensed `country-flag-emoji-polyfill` package), because Windows browsers do not draw flag emoji natively.
+## 📜 License
+
+Released under the [MIT License](LICENSE). Copyright (c) 2026 rxr.
+
+---
+
+## 🙏 Credits
+
+- [WebLLM](https://github.com/mlc-ai/web-llm) for on-device inference.
+- [Bootstrap](https://getbootstrap.com) and [jQuery](https://jquery.com), bundled in `resources/`.
+- Flag emoji use the bundled `resources/TwemojiCountryFlags.woff2` (Twemoji graphics, CC-BY 4.0, via the MIT-licensed `country-flag-emoji-polyfill`).
