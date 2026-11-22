@@ -45,7 +45,7 @@ A browser-based text workstation. Pick a tool, review sentence-level suggestions
 <img src="images/screenshot-uishowcase.jpg" alt="TMT UI showcase" width="100%">
 
 <a href="https://rxr20.github.io/text-metamorphosis-tool/">
-<img src="images/button.png" alt="Test it online" width="50%">
+<img src="images/button.png" target="_blank" alt="Test it online" width="30%">
 </a>
 </div>
 
